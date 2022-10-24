@@ -1,5 +1,10 @@
 import telebot
 import config
+from p_dol import PrintDollar
+
+
+rate_of_dollar_val = PrintDollar()
+
 
 bot = telebot.TeleBot(config.TOKEN)
 
@@ -16,8 +21,11 @@ def azarov_pidor(message):
 
 @bot.message_handler(commands=["help"])
 def help(message):
-    bot.send_message(message.chat.id, "/help - все команды бота\n/azarov - все об Азарове")
+    bot.send_message(message.chat.id, "/help - все команды бота\n/azarov - все об Азарове\n/rateOFdollar - курс доллара")
 
+@bot.message_handler(commands=['rateOFdollar'])
+def rate_of_dollar(message):
+    bot.send_message(message.chat.id, 'Курс - {0}'.format(rate_of_dollar_val))
 
 bot.polling(none_stop=True)
 
