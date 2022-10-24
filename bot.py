@@ -2,7 +2,7 @@ import telebot
 import config
 from p_dol import PrintDollar
 
-
+swearing = ['бля', 'блять', 'хуй', 'нахуй']
 rate_of_dollar_val = PrintDollar()
 
 
@@ -21,6 +21,10 @@ def answer(message):
         welcome_sticker = open('stikers/welcome2.tgs', 'rb')
         bot.send_sticker(message.chat.id, welcome_sticker)
         bot.send_message(message.chat.id, "Привет, {0.first_name}".format(message.from_user))
+
+    if message.text.lower() in swearing:
+        bot.send_message(message.chat.id, 'Вая, не ругайся!!!')
+    
     else:
         # bot.send_message(message.chat.id, 'Не знаю что сказать :(')
         None
