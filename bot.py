@@ -14,14 +14,9 @@ def start(message):
     bot.send_sticker(message.chat.id, welcome_sticker)
     bot.send_message(message.chat.id, "Привет, {0.first_name}".format(message.from_user))
 
-@bot.message_handler(commands=["azarov"])
-def azarov_pidor(message):
-    for _ in range(5):
-        bot.send_message(message.chat.id, "Азаров - пидор ебаный!!!")
-
 @bot.message_handler(commands=["help"])
 def help(message):
-    bot.send_message(message.chat.id, "/help - все команды бота\n/azarov - все об Азарове\n/rateOFdollar - курс доллара")
+    bot.send_message(message.chat.id, "/help - все команды бота\n/rateOFdollar - курс доллара")
 
 @bot.message_handler(commands=['rateOFdollar'])
 def rate_of_dollar(message):
