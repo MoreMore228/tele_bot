@@ -18,7 +18,7 @@ def rate_of_dollar(message):
 @bot.message_handler(content_types = ['text'])
 def answer(message):
     if message.text.lower() == 'привет':
-        welcome_sticker = open('stikers/welcome.webp', 'rb')
+        welcome_sticker = open('stikers/welcome2.tgs', 'rb')
         bot.send_sticker(message.chat.id, welcome_sticker)
         bot.send_message(message.chat.id, "Привет, {0.first_name}".format(message.from_user))
     else:
