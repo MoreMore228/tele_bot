@@ -1,20 +1,51 @@
 import telebot
 import config
-from p_dol import PrintDollar
+from cur_pars import CurrencyParsing
 
+# Список мата, для того, чтобы ругать людей :)
 swearing = ['бля', 'блять', 'хуй', 'нахуй']
-rate_of_dollar_val = PrintDollar()
 
-
+# Бот и его ТОКЕН
 bot = telebot.TeleBot(config.TOKEN)
+
+# ФУНКЦИЯ HELP
 @bot.message_handler(commands=["help"])
 def help(message):
-    bot.send_message(message.chat.id, "/help - все команды бота\n/rateOFdollar - курс доллара")
+    bot.send_message(message.chat.id, "/help - все команды бота\n/exchange")
 
-@bot.message_handler(commands=['rateOFdollar'])
+
+# ФУНКЦИЯ START
+@bot.message_handler(commands=["start"])
+def help(message):
+    bot.send_message(message.chat.id, "Привет, я бот!\nЯ могу сказать тебе привет (команда: 'Привет')\nЯ могу подсказать все остальные команды (команда: /help)\nА еще могу отругать за 4 матерных слова!!!!")
+
+
+# ФУНКЦИЯ КУРСА ВАЛЮТ
+@bot.message_handler(commands=['exchange'])
 def rate_of_dollar(message):
-    bot.send_message(message.chat.id, 'Курс - {0}'.format(rate_of_dollar_val))
+    bot.send_message(message.chat.id, 'Выберете курс, который хотите увидеть:\n/USD\n/EUR\n/CNY\n/GBP')
 
+# для доллара 
+@bot.message_handler(commands=['USD'])
+def answer(message):
+    bot.send_message(message.chat.id, 'Курс Доллара: {}'.format((CurrencyParsing('USD').get_val())))
+
+# для евро
+@bot.message_handler(commands=['EUR'])
+def answer(message):
+    bot.send_message(message.chat.id, 'Курс Евро: {}'.format((CurrencyParsing('EUR').get_val())))
+
+# для юаня
+@bot.message_handler(commands=['CNY'])
+def answer(message):
+    bot.send_message(message.chat.id, 'Курс Юаня: {}'.format((CurrencyParsing('CNY').get_val())))
+
+# для стерлингов
+@bot.message_handler(commands=['GBP'])
+def answer(message):
+    bot.send_message(message.chat.id, 'Курс Стерлингов: {}'.format((CurrencyParsing('GBP').get_val())))
+
+# обработка текста
 @bot.message_handler(content_types = ['text'])
 def answer(message):
     if message.text.lower() == 'привет':
@@ -26,7 +57,6 @@ def answer(message):
         bot.send_message(message.chat.id, 'Вая, не ругайся!!!')
     
     else:
-        # bot.send_message(message.chat.id, 'Не знаю что сказать :(')
         None
 
 bot.polling(none_stop=True, interval=0)
