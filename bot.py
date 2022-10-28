@@ -51,7 +51,7 @@ def answer(message):
     bot.send_message(message.chat.id, 'Курс Стерлингов: {}'.format((CurrencyParsing('GBP').get_val())), reply_markup=kb.after_rate())
 
 # обработка текста
-@bot.message_handler(content_types = ['text'])
+@bot.message_handler(content_types=['text'])
 def answer(message):
     if message.text.lower() == 'привет':
         welcome_sticker = open('stikers/welcome2.tgs', 'rb')

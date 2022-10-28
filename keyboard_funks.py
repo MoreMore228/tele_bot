@@ -3,7 +3,7 @@ from telebot import types
 
 
 def keyboard_default():
-    keyboard_default = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    keyboard_default = types.ReplyKeyboardMarkup(resize_keyboard=True, selective=True)
     btn1 = types.KeyboardButton("/help")
     btn2 = types.KeyboardButton("/exchange")
     keyboard_default.add(btn1, btn2)
@@ -11,7 +11,7 @@ def keyboard_default():
 
 
 def keyboard_start():
-    keyboard_for_start = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    keyboard_for_start = types.ReplyKeyboardMarkup(resize_keyboard=True, selective=True)
     btn1 = types.KeyboardButton("Привет")
     btn2 = types.KeyboardButton("/help")
     btn3 = types.KeyboardButton("/exchange")
@@ -20,7 +20,7 @@ def keyboard_start():
 
 
 def keyboard_exchange():
-    keyboard_for_rate = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    keyboard_for_rate = types.ReplyKeyboardMarkup(resize_keyboard=True, selective=True)
     btn1 = types.KeyboardButton("/USD")
     btn2 = types.KeyboardButton("/EUR")
     btn3 = types.KeyboardButton("/CNY")
@@ -31,7 +31,7 @@ def keyboard_exchange():
 
 
 def after_rate():
-    keyboard_after_rate = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    keyboard_after_rate = types.ReplyKeyboardMarkup(resize_keyboard=True, selective=True)
     btn1 = types.KeyboardButton("Спасибо")
     btn2 = types.KeyboardButton("/exchange")
     btn3 = types.KeyboardButton("/help")
